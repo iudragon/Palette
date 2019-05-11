@@ -29,7 +29,7 @@ public class ImageActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image_view);
 
-        File file = new File(getFilesDir(), "my_image");
+        File file = new File(getFilesDir(), IMAGE_KEY);
 
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
 

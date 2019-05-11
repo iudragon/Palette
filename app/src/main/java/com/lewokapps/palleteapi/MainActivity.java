@@ -20,6 +20,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imageView1, imageView2, imageView3;
+    private ImageActivity imageActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Bitmap bitmap = bitmapDrawable.getBitmap();
 
             Intent intent = new Intent(this, ImageActivity.class);
+
+            // for Animation
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, "image_transition");
             startActivity(intent, options.toBundle());
 
             try {
-                FileOutputStream fileOutputStream = openFileOutput("my_image", Context.MODE_PRIVATE);
+                FileOutputStream fileOutputStream = openFileOutput(imageActivity.IMAGE_KEY, Context.MODE_PRIVATE);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
                 fileOutputStream.flush();
                 fileOutputStream.close();
